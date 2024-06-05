@@ -32,10 +32,13 @@ export const Header = () => {
                   <div className={styles.title}>система для бронирования номеров в гостиницах</div>
                </Link>
                <div className={styles.buttons}>
+                  <Link to="/about">
+                     <Button variant="contained">О нас</Button>
+                  </Link>
                   {isAuth ? (
                      <>
                         <Link to="/reservation">
-                           <Button variant="contained">Редактировать брони</Button>
+                           <Button variant="contained">Просмотреть брони</Button>
                         </Link>
                         <Link to="/add-post">
                            <Button variant="contained">Добавить номер</Button>
@@ -49,9 +52,10 @@ export const Header = () => {
                         <Link to="/login">
                            <Button variant="outlined">Войти</Button>
                         </Link>
-                        <Link to="/register">
+
+                        {/* <Link to="/register">
                            <Button variant="contained">Создать аккаунт</Button>
-                        </Link>
+                        </Link> */}
                      </>
                   )}
                </div>

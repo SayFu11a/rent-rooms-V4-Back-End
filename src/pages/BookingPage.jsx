@@ -65,24 +65,71 @@ function BookingPage() {
          });
    };
 
+   const containerStyle = {
+      maxWidth: '600px',
+      margin: '0 auto',
+      padding: '20px',
+      backgroundColor: '#f5f5f5',
+      borderRadius: '8px',
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+   };
+
+   const headingStyle = {
+      textAlign: 'center',
+      marginBottom: '20px',
+      color: '#333',
+   };
+
+   const labelStyle = {
+      display: 'block',
+      marginBottom: '10px',
+      fontWeight: 'bold',
+      color: '#555',
+   };
+
+   const inputStyle = {
+      width: '100%',
+      padding: '8px',
+      marginTop: '5px',
+      marginBottom: '20px',
+      border: '1px solid #ccc',
+      borderRadius: '4px',
+   };
+
+   const buttonStyle = {
+      display: 'inline-block',
+      padding: '10px 20px',
+      color: '#fff',
+      backgroundColor: '#007bff',
+      border: 'none',
+      borderRadius: '4px',
+      cursor: 'pointer',
+      textAlign: 'center',
+   };
+
+   const buttonHoverStyle = {
+      backgroundColor: '#0056b3',
+   };
+
    return (
-      <div>
-         <h2>Бронирование номера</h2>
-         <label>
+      <div style={containerStyle}>
+         <h2 style={headingStyle}>Бронирование номера</h2>
+         <label style={labelStyle}>
             Дата заезда:
             <input
                type="date"
                value={checkInDate}
                onChange={(e) => setCheckInDate(e.target.value)}
+               style={inputStyle}
             />
          </label>
-         <br />
-         <label>
+         <label style={labelStyle}>
             Дата выезда:
             <input
                type="date"
                value={checkOutDate}
                onChange={(e) => setCheckOutDate(e.target.value)}
+               style={inputStyle}
             />
          </label>
          <br />
@@ -92,6 +139,7 @@ function BookingPage() {
                type="text"
                value={contactInfo.fullName}
                onChange={(e) => setContactInfo({ ...contactInfo, fullName: e.target.value })}
+               style={inputStyle}
             />
          </label>
          <br />
@@ -101,6 +149,7 @@ function BookingPage() {
                type="email"
                value={contactInfo.email}
                onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })}
+               style={inputStyle}
             />
          </label>
          <br />
@@ -110,31 +159,49 @@ function BookingPage() {
                type="tel"
                value={contactInfo.phoneNumber}
                onChange={(e) => setContactInfo({ ...contactInfo, phoneNumber: e.target.value })}
+               style={inputStyle}
             />
          </label>
          <br />
 
          {step === 2 && (
-            <div>
-               <h2>Информация о гостях</h2>
+            <div style={{ marginTop: '20px' }}>
+               <h2 style={headingStyle}>Информация о гостях</h2>
                {guests.map((guest) => (
-                  <div key={guest.id}>
+                  <div key={guest.id} style={{ marginBottom: '20px' }}>
                      <label>
                         ФИО гостя {guest.id}:
                         <input
                            type="text"
                            value={guest.fullName}
                            onChange={(e) => handleGuestNameChange(guest.id, e.target.value)}
+                           style={inputStyle}
                         />
                      </label>
                   </div>
                ))}
-               <button onClick={handleAddGuest}>Добавить гостя</button>
+               <button
+                  style={{ ...buttonStyle, marginBottom: '20px' }}
+                  onMouseOver={(e) =>
+                     (e.target.style.backgroundColor = buttonHoverStyle.backgroundColor)
+                  }
+                  onMouseOut={(e) => (e.target.style.backgroundColor = buttonStyle.backgroundColor)}
+                  onClick={handleAddGuest}>
+                  Добавить гостя
+               </button>
             </div>
          )}
 
          <button onClick={handleContinue}>
-            {step === 1 ? 'Продолжить' : 'Завершить бронирование'}
+            <button
+               onClick={handleContinue}
+               style={buttonStyle}
+               onMouseOver={(e) =>
+                  (e.target.style.backgroundColor = buttonHoverStyle.backgroundColor)
+               }
+               onMouseOut={(e) => (e.target.style.backgroundColor = buttonStyle.backgroundColor)}>
+               {step === 1 ? 'Продолжить' : 'Завершить бронирование'}
+            </button>
          </button>
       </div>
    );

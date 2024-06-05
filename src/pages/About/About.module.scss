@@ -1,0 +1,49 @@
+/* About.module.scss */
+
+.aboutContainer {
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+
+  background-color: white;
+  border-radius: 3%;
+}
+
+.aboutTitle {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.aboutDescription {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.featuresList {
+  list-style-type: none;
+  padding: 0;
+  font-size: 1.1em;
+  color: #444;
+}
+
+.featureItem {
+  margin-bottom: 10px;
+}
+
+.contactInfo {
+  margin-top: 30px;
+  font-size: 1em;
+  color: #666;
+}
+
+.contactInfo h2 {
+  margin-bottom: 10px;
+}
+
+.contactInfo p {
+  margin: 5px 0;
+}

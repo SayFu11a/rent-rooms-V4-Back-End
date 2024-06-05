@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
 
 import { Post } from '../components/Post';
 import { TagsBlock } from '../components/TagsBlock';
 import { CommentsBlock } from '../components/CommentsBlock';
 import { fetchPosts, fetchTags } from '../redux/slices/post';
 
-// import { get } from 'react-hook-form';
-
 export const Home = () => {
    const dispatch = useDispatch();
    const userData = useSelector((state) => state.auth.data);
    const { posts, tags } = useSelector((state) => state.posts);
+   const [searchQuery, setSearchQuery] = useState('');
 
    const isPostsLoading = posts.status === 'loading';
    const isTagsLoading = tags.status === 'loading';
@@ -22,9 +22,15 @@ export const Home = () => {
    React.useEffect(() => {
       dispatch(fetchPosts());
       dispatch(fetchTags());
-   }, []);
+   }, [dispatch]);
 
-   console.log(posts);
+   const handleSearchChange = (e) => {
+      setSearchQuery(e.target.value);
+   };
+
+   const filteredPosts = posts.items.filter((post) =>
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()),
+   );
 
    return (
       <>
@@ -32,13 +38,22 @@ export const Home = () => {
             <Tab label="Новые" />
             <Tab label="Популярные" />
          </Tabs>
+         <TextField
+            fullWidth
+            variant="outlined"
+            placeholder="Поиск по названию номера"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            style={{ marginBottom: 15 }}
+         />
          <Grid container spacing={4}>
             <Grid xs={8} item>
-               {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
+               {(isPostsLoading ? [...Array(5)] : filteredPosts).map((obj, index) =>
                   isPostsLoading ? (
                      <Post key={index} isLoading={true} />
                   ) : (
                      <Post
+                        key={obj._id}
                         id={obj._id}
                         title={obj.title}
                         imageUrl={obj.imageUrl ? `http://localhost:4444${obj.imageUrl}` : ''}

@@ -13,6 +13,7 @@ import axios from 'axios';
 import BookingPage from './pages/BookingPage';
 import GuestInfo from './pages/GuestInfo';
 import ReservationPage from './pages/ReservationPage';
+import { About } from './pages/About';
 
 // import Header from './components/Header';
 // import Drawer from './components/Drawer';
@@ -152,6 +153,7 @@ function App() {
                <Route path="/booking" element={<BookingPage />} />
                <Route path="/guest-info" element={<GuestInfo />} />
                <Route path="/reservation" element={<ReservationPage />} />
+               <Route path="/about" element={<About />} />
             </Routes>
          </Container>
       </>
