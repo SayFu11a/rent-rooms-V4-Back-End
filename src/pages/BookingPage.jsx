@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { baseURL } from '../axios';
 
 function BookingPage() {
    const location = useLocation();
@@ -49,7 +50,7 @@ function BookingPage() {
       });
 
       axios
-         .post('http://localhost:4444/booking', {
+         .post(`${baseURL}/booking`, {
             checkInDate,
             checkOutDate,
             contactInfo,

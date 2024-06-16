@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, Navigate, useParams } from 'react-router-dom';
+import { baseURL } from '../../axios';
 
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
@@ -117,11 +118,7 @@ export const AddPost = () => {
                <Button variant="contained" color="error" onClick={onClickRemoveImage}>
                   Удалить
                </Button>
-               <img
-                  className={styles.image}
-                  src={`http://localhost:4444${imageUrl}`}
-                  alt="Uploaded"
-               />
+               <img className={styles.image} src={`${baseURL}${imageUrl}`} alt="Uploaded" />
             </>
          )}
 

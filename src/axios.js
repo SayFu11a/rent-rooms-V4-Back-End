@@ -1,7 +1,12 @@
 import axios from 'axios';
 
+export const baseURL =
+   window.location.hostname === 'localhost'
+      ? 'http://localhost:4444'
+      : 'https://rent-rooms-1omr.onrender.com';
+
 const instance = axios.create({
-   baseURL: 'http://localhost:4444',
+   baseURL,
 });
 
 instance.interceptors.request.use((config) => {

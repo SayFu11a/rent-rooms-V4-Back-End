@@ -1,6 +1,7 @@
 // ReservationPage.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { baseURL } from '../axios';
 
 import { useSelector } from 'react-redux';
 
@@ -13,7 +14,7 @@ function ReservationPage() {
    useEffect(() => {
       // Fetch data from the server when the component mounts
       axios
-         .get('http://localhost:4444/booking')
+         .get(`${baseURL}/booking`)
          .then((response) => {
             setReservations(response.data);
          })
